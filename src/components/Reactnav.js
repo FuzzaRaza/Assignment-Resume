@@ -1,21 +1,10 @@
 import React from "react";
-//import Header from "./Header";
 import {LogoTitle} from "./LogoTitle";
 import { Button,View, Text } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
 
 class HomeScreen extends React.Component {
-  /*static navigationOptions = {
-    title: 'Home',
-    headerStyle: {
-      backgroundColor: 'blue',
-    },
-    headerTintColor: 'white',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  };*/
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -35,6 +24,46 @@ class HomeScreen extends React.Component {
   }
 }
 
+class PersonalInformation extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>
+            Name: Fuzza Raza
+            Residential address: Karachi
+        </Text>
+        
+      </View>
+    );
+  }
+}
+
+class Education extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>
+            Completed Bachelors in 2018
+            Inter in Engineering
+            Matric in science
+        </Text>
+        
+      </View>
+    );
+  }
+}
+
+class ProfessionalExperience extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Currently working at xyz software company as technical lead.</Text>
+        
+      </View>
+    );
+  }
+}
+
 class DetailsScreen extends React.Component {
   render() {
     //creating parameters with default value
@@ -48,11 +77,23 @@ class DetailsScreen extends React.Component {
         <Text>Id: {JSON.stringify(Id)}</Text>
         <Text>othrs: {JSON.stringify(othrs)}</Text>
         <Button
-          title="Go to details"
-          onPress={() => this.props.navigation.push('Details',
+          title="Go to Professional Experience"
+          onPress={() => this.props.navigation.navigate(ProfessionalExperience,
           {Id: Math.floor(Math.random()*100),
           })}
         />
+        <Button
+          title="Go to Education"
+          onPress={() => this.props.navigation.navigate(Education,
+          {Id: Math.floor(Math.random()*100),
+          })}
+        />
+        <Button
+          title="Go to Personal Information"
+          onPress={() => this.props.navigation.navigate(PersonalInformation,
+          {Id: Math.floor(Math.random()*100),
+          })}
+        />        
         <Button
           title="Go to Home"
           onPress={() => this.props.navigation.navigate('Home')}
@@ -65,12 +106,24 @@ class DetailsScreen extends React.Component {
     );
   }
 }
+
+
+
 const AppNavigator = createStackNavigator({
   Home: {
     screen: HomeScreen
   },
   Details: {
     screen: DetailsScreen
+  },
+  ProfessionalExperience: {
+    screen: ProfessionalExperience
+  },
+  Education: {
+    screen: Education
+  },
+  PersonalInformation: {
+    screen: PersonalInformation
   }
 },
   {
